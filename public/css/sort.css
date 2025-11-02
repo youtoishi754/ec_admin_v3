@@ -1,0 +1,163 @@
+/* 商品情報一覧のソート機能用CSS */
+
+/* すべてのテーブルヘッダーセルに統一スタイルを適用 */
+.table-hover thead th {
+  height: 60px; /* 明示的に高さを設定 */
+  vertical-align: top; /* 上揃えにする */
+  position: relative;
+}
+
+/* ソート可能なヘッダーの基本スタイル */
+th.sort-header {
+  position: relative;
+  white-space: nowrap;
+  user-select: none;
+  height: 60px; /* 明示的に高さを設定 */
+  vertical-align: top; /* 上揃えにする */
+}
+
+/* ヘッダー内のspan要素を統一 */
+th.sort-header span {
+  display: inline-block;
+  margin-bottom: 5px;
+  padding-top: 5px;
+}
+
+/* ソートボタンの基本スタイル */
+.sort-button {
+  display: inline-block;
+  margin-left: 5px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 3px;
+  color: white;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.sort-button:hover {
+  opacity: 0.8;
+  text-decoration: none;
+  color: white;
+}
+
+/* 昇順ボタン（青） */
+.sort-button-asc {
+  background-color: #007bff;
+}
+
+/* 降順ボタン（赤） */
+.sort-button-desc {
+  background-color: #dc3545;
+}
+
+/* アクティブなソートボタン */
+.sort-button.active {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+
+/* ソートヘッダーのホバー効果 */
+th.sort-header:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* ソートボタンなしの項目のプレースホルダー */
+.placeholder-buttons {
+  display: inline-block;
+  height: 24px; /* ソートボタンと同じ高さ */
+  width: 54px; /* ソートボタン2つ分の幅 */
+  visibility: hidden;
+  position: relative;
+}
+
+/* すべてのsort-buttons-groupに同じ高さを設定 */
+.sort-buttons-group {
+  height: 24px;
+  display: block;
+  clear: both;
+}
+
+/* モバイル用ソートコントロール */
+.mobile-sort-controls {
+  display: none;
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 767px) {
+  /* モバイル用ソートコントロールを表示 */
+  .mobile-sort-controls {
+    display: block;
+  }
+  
+  .mobile-sort-select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    margin-bottom: 10px;
+  }
+  
+  /* モバイル表示時のソートボタンサイズを調整 */
+  .sort-button {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    margin-left: 2px;
+  }
+  
+  /* モバイル表示時のプレースホルダーの高さも調整 */
+  .placeholder-buttons {
+    height: 20px;
+    width: 44px; /* モバイルサイズのボタン2つ分 */
+  }
+  
+  /* モバイル表示時のヘッダー高さ調整 */
+  th.sort-header {
+    height: 50px;
+  }
+  
+  /* すべてのsort-buttons-groupのモバイル高さ調整 */
+  .sort-buttons-group {
+    height: 20px;
+  }
+  
+  /* テーブルヘッダーの調整 */
+  th.sort-header {
+    padding-right: 5px !important;
+  }
+  
+  /* 表のレイアウト調整 */
+  .table-responsive {
+    overflow-x: auto;
+  }
+}
+
+/* さらに小さい画面での調整 */
+@media screen and (max-width: 576px) {
+  /* すべてのヘッダーセルの高さを固定 */
+  th.sort-header {
+    height: 70px;
+  }
+  
+  /* すべてのヘッダー内のspanを同じように配置 */
+  th.sort-header span {
+    display: block;
+    margin-bottom: 3px;
+    padding-top: 5px;
+  }
+  
+  .sort-buttons-group {
+    white-space: nowrap;
+    display: block;
+    clear: both;
+  }
+}

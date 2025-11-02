@@ -1,0 +1,414 @@
+/*************
+* 商品管理一覧
+**************/
+
+/*************
+*検索条件のスタイル
+*************/
+#contents_search{
+  margin:50px 0px 50px 0px;
+}
+
+/*************
+*テーブルの角丸
+*************/
+
+.table_border_radius {
+  border: 1px solid #aaa;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.table_border_radius thead th,
+.table_border_radius tbody th,
+.table_border_radius tbody td {
+  padding: .6em 3em;
+  border-bottom: 1px solid #aaa;
+}
+.table_border_radius tbody th {
+  background-color: #eee;
+}
+.table_border_radius thead th + th,
+.table_border_radius tbody td {
+  border-left: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+}
+.table_border_radius tbody tr:last-child th,
+.table_border_radius tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table_border_radius tfoot{
+  background-color:#fff;
+} 
+/*************
+*テーブルのフッター
+*************/
+
+.t_foot{
+  border-top: 1px solid #aaa !important;
+  background-color:#ffffff !important;
+  text-align:center;
+}
+
+/*************
+* テーブル基本設定
+* 全画面サイズでの基本的なテーブルスタイル
+*************/
+.table-hover {
+  width: 100%;
+  margin-bottom: 1rem;
+  table-layout: auto; /* 内容に応じて列幅を自動調整 */
+  border-collapse: collapse;
+  max-width: 100%; /* 親要素からはみ出さないようにする */
+}
+
+/* テーブルのセル設定 */
+.table-hover th,
+.table-hover td {
+  padding: 0.75rem;
+  vertical-align: middle; /* セル内容を垂直方向に中央揃え */
+  border-top: 1px solid #dee2e6;
+}
+
+/* テーブルデータを右寄せにする */
+.table-hover td {
+  text-align: right !important;
+}
+
+/* テーブルセル内の内容も右寄せにする */
+.table-hover td * {
+  text-align: right !important;
+}
+
+/* ヘッダーは左寄せのまま */
+.table-hover th {
+  text-align: left;
+}
+
+/* 操作ボタンを含むセルを右寄せにする */
+.table-hover td:last-child {
+  text-align: right !important;
+  display: flex;
+  justify-content: flex-end !important;
+}
+
+/* テーブルを囲むコンテナでのスクロール対応
+   小さい画面でテーブルが横にはみ出さないようにする */
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* 横方向にスクロール可能にする */
+  -webkit-overflow-scrolling: touch; /* スマホでのスムーズなスクロール */
+  max-width: 100%; /* 親要素からはみ出さないようにする */
+}
+
+/*************
+* レスポンシブデザイン
+**************/
+
+/* 基本レスポンシブ設定 */
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 100%;
+    padding: 0 15px;
+    max-width: 100%;
+    box-sizing: border-box; /* パディングを幅に含める */
+  }
+  
+  /* テーブルの横幅を調整 */
+  .table-hover {
+    width: 100%;
+    max-width: none; /* 制限を解除 */
+  }
+}
+
+/* モバイル表示時のテーブルスタイル */
+@media screen and (max-width: 767px) {
+  /* テーブルヘッダーを非表示にする */
+  .table-hover thead {
+    display: none;
+  }
+  
+  /* 各行をブロック要素として表示 */
+  .table-hover, .table-hover tbody, .table-hover tr, .table-hover td {
+    display: block;
+    width: 100%;
+  }
+  
+  /* 各行に余白を追加 */
+  .table-hover tr {
+    margin-bottom: 15px;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  /* セルの表示方法を変更 */
+  .table-hover td {
+    text-align: right !important;
+    padding-left: 50%;
+    padding-right: 15px; /* 右側に余白を追加 */
+    position: relative;
+    border-top: none;
+    border-bottom: 1px solid #eee;
+    min-height: 44px; /* 最小の高さを確保 */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end !important; /* 内容を右寄せに */
+  }
+  
+  /* 最後のセルの下線を消す */
+  .table-hover tr td:last-child {
+    border-bottom: none;
+  }
+  
+  /* data-label属性の内容をセルの前に表示 */
+  .table-hover td:before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: 45%; /* 幅を固定して右側のデータと重ならないようにする */
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    text-align: left;
+    padding-right: 10px; /* 右側に少し余白を追加 */
+    box-sizing: border-box;
+  }
+  
+  /* ボタンのスタイル調整 */
+  .table-hover td[data-label="操作"] {
+    text-align: right !important;
+    display: flex;
+    justify-content: flex-end !important;
+    padding-right: 10px;
+    align-items: center;
+  }
+  
+  .table-hover td[data-label="操作"]:before {
+    top: 25px; /* ラベルの位置を調整 */
+    width: 30%; /* ラベル幅を狭めてボタン用のスペースを増やす */
+  }
+  
+  .table-hover td[data-label="操作"] .btn {
+    margin: 2px;
+    display: inline-block;
+    text-align: center !important;
+  }
+  
+  /* テーブルコンテナの幅を調整 */
+  .table-container {
+    width: 100%;
+    max-width: none; /* 制限を解除 */
+    margin: 0 -15px; /* コンテナのパディングを相殺 */
+    padding: 0 15px; /* 内側にパディングを追加 */
+    box-sizing: border-box;
+  }
+}
+
+/* タブレット向け */
+@media screen and (max-width: 992px) {
+  #contents_search {
+    margin: 30px 0;
+  }
+  
+  /* 検索条件テーブルの調整 */
+  .table_border_radius thead th,
+  .table_border_radius tbody th,
+  .table_border_radius tbody td {
+    padding: .5em 1.5em;
+  }
+  
+  /* セレクトボックスの幅調整 */
+  .ja-select2 {
+    width: 100% !important;
+    max-width: 300px;
+  }
+  
+  /* 日付入力フィールドの調整 */
+  input[type="text"] {
+    max-width: 100%;
+  }
+  
+  /* 年月日入力欄の幅調整 */
+  input[style*="width:60px;"] {
+    width: 50px !important;
+  }
+}
+
+/* スマホ向け */
+@media screen and (max-width: 768px) {
+  h3 {
+    font-size: 1.5rem;
+  }
+  
+  /* 検索フォームのレイアウト調整 */
+  .table_border_radius thead th,
+  .table_border_radius tbody th,
+  .table_border_radius tbody td {
+    padding: .4em .8em;
+    display: block;
+    width: 100%;
+  }
+  
+  .table_border_radius tbody th {
+    border-bottom: none;
+  }
+  
+  /* 日付入力関連のレイアウト調整 */
+  td[colspan="5"] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  /* ボタンのレスポンシブ調整 */
+  .btn {
+    margin-bottom: 5px;
+    padding: .375rem .5rem;
+  }
+  
+  /* テーブルのレスポンシブ化 */
+  .table-hover {
+    width: 100%;
+    table-layout: fixed;
+    margin: 0; /* マージンを削除 */
+  }
+  
+  /* テーブルコンテナでスクロール可能にする */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+  }
+  
+  /* テーブルコンテナの幅を調整 */
+  .table-container {
+    width: 100%;
+    margin: 0; /* マージンを削除 */
+    padding: 0; /* パディングを削除 */
+  }
+  
+  /* 商品情報一覧テーブルのレスポンシブ化 - カード形式表示への変換 */
+  .table-hover thead {
+    display: none; /* PCで表示するヘッダーは非表示に */
+  }
+  
+  /* モバイル表示時のテーブル行をカードのように表示 */
+  .table-hover tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    width: 100%;
+    position: relative; /* 位置指定のための基準 */
+    box-sizing: border-box; /* ボーダーを幅に含める */
+  }
+  
+  /* モバイル表示時のセル内のレイアウト - data-label属性で列名を表示 */
+  .table-hover tbody td {
+    display: flex;
+    justify-content: flex-end !important; /* 値を右寄せに変更 */
+    padding: .5rem;
+    border-bottom: 1px solid #dee2e6;
+    text-align: right !important; /* 値を右寄せに */
+    width: 100%;
+    box-sizing: border-box; /* パディングを幅に含める（余白問題解消） */
+    position: relative; /* 擬似要素の基準位置 */
+  }
+  
+  /* data-label属性を使用して、スマホ表示時に列名を表示 */
+  .table-hover tbody td:before {
+    content: attr(data-label); /* HTML要素のdata-label属性の値を表示 */
+    font-weight: bold;
+    text-align: left;
+    margin-right: 1rem;
+    flex: 0.6; /* ラベル部分の幅を小さくして値のスペースを増やす */
+    white-space: nowrap; /* ラベルを折り返さない */
+  }
+  
+  /* セル内の値を明示的に右寄せ */
+  .table-hover tbody td > span,
+  .table-hover tbody td > div,
+  .table-hover tbody td > a {
+    text-align: right !important;
+    flex: 1;
+  }
+  
+  .table-hover tbody td:last-child {
+    border-bottom: none;
+  }
+  
+  /* ボタングループの調整 - 詳細・編集・削除ボタンの配置 */
+  td:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end !important; /* ボタンを右寄せに */
+    gap: 5px; /* ボタン間の間隔を均等に */
+    padding: 8px 12px; /* 右側の余白を増やす */
+    background-color: #f8f9fa; /* 操作部分の背景色を変更 */
+  }
+  
+  td:last-child .btn {
+    margin: 0; /* gap指定があるので余白は不要 */
+    min-width: 60px; /* ボタンの最小幅を設定 */
+    text-align: center !important; /* ボタンのテキストを中央揃え */
+  }
+}
+
+/*************
+* ページネーションのレスポンシブ対応
+**************/
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.page-item {
+  margin: 2px;
+}
+
+/* 超小型スマホ向け */
+@media screen and (max-width: 480px) {
+  #contents_search {
+    margin: 20px 0;
+  }
+  
+  .table_border_radius {
+    font-size: 0.9rem;
+  }
+  
+  /* 入力フィールドの調整 */
+  input[type="text"], 
+  input[type="submit"], 
+  input[type="button"] {
+    font-size: 0.9rem;
+  }
+  
+  /* 年月日入力の調整 */
+  input[style*="width:60px;"] {
+    width: 40px !important;
+  }
+  
+  /* ボタンサイズの調整 */
+  .btn {
+    font-size: 0.85rem;
+    padding: .25rem .4rem;
+  }
+  
+  /* ページネーションの調整 */
+  .pagination {
+    font-size: 0.9rem;
+  }
+  
+  .page-link {
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+

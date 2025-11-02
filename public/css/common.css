@@ -1,0 +1,109 @@
+/* Common overrides and utilities */
+
+/* 商品情報フォーム内のテキストエリアのデフォルト高さとリサイズ方向を統一 */
+.goods-form textarea.form-control {
+	min-height: 220px;
+	resize: vertical;
+}
+
+/* ページネーションのスタイル調整 */
+/* 基本（数字ボタンなど） */
+.pagination .page-link,
+.pagination .page-link {
+  font-size: 1.2rem;   
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+}
+
+/* prev矢印の調整 - セレクタを強化 */
+.pagination .page-item:first-child .page-link,
+.pagination li[aria-label^="«"] .page-link,
+.pagination li[aria-label*="Previous"] .page-link,
+.pagination a[rel="prev"],
+.pagination a[aria-label*="previous"] {
+  /* 位置の微調整 */
+  font-size: 2.0rem !important; /* 矢印の大きさを少し小さく */
+  line-height: 1 !important;    /* 基本のページネーションと同じに調整 */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  padding:0px 0px 6px 0px !important;         /* 矢印の場合は左右のパディングも0に */
+}
+
+/* next矢印の調整 - セレクタを強化 */
+.pagination .page-item:last-child .page-link,
+.pagination li[aria-label^="»"] .page-link,
+.pagination li[aria-label*="Next"] .page-link,
+.pagination a[rel="next"],
+.pagination a[aria-label*="next"] {
+  font-size: 2.0rem !important; /* 矢印の大きさを少し小さく */
+  line-height: 1 !important;    /* 基本のページネーションと同じに調整 */
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  padding: 0px 0px 6px 0px !important;       /* 矢印の場合は左右のパディングも0に */
+}
+
+/* メディアクエリでモバイル対応 */
+@media (max-width: 768px) {
+  /* 基本ページネーション - モバイル用 */
+  .pagination .page-link,
+  .pagination .page-link {
+    font-size: 1rem;    /* 小さいサイズに */
+    min-width: 30px;    /* 幅を小さく */
+    height: 30px;       /* 高さを小さく */
+    padding: 0 5px;     /* パディングも小さく */
+  }
+  
+  /* prev矢印 - モバイル用 */
+  .pagination .page-item:first-child .page-link,
+  .pagination li[aria-label^="«"] .page-link,
+  .pagination li[aria-label*="Previous"] .page-link,
+  .pagination a[rel="prev"],
+  .pagination a[aria-label*="previous"] {
+    font-size: 1.5rem !important;  /* モバイルでは少し小さく */
+    min-width: 30px !important;    /* 幅を小さく */
+    height: 30px !important;       /* 高さを小さく */
+  }
+  
+  /* next矢印 - モバイル用 */
+  .pagination .page-item:last-child .page-link,
+  .pagination li[aria-label^="»"] .page-link,
+  .pagination li[aria-label*="Next"] .page-link,
+  .pagination a[rel="next"],
+  .pagination a[aria-label*="next"] {
+    font-size: 1.5rem !important;  /* モバイルでは少し小さく */
+    min-width: 30px !important;    /* 幅を小さく */
+    height: 30px !important;       /* 高さを小さく */
+  }
+  
+  /* ページネーション全体のレイアウト調整 */
+  .pagination {
+    flex-wrap: wrap;               /* 必要に応じて折り返し */
+    justify-content: center;       /* 中央揃え */
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+}
+
+/* さらに小さい画面用 */
+@media (max-width: 480px) {
+  /* ページネーション省略表示対応 */
+  .pagination .page-item:not(:first-child):not(:last-child):not(.active) {
+    display: none;                 /* アクティブページと前後ボタン以外を非表示 */
+  }
+  
+  /* 現在のページは必ず表示 */
+  .pagination .page-item.active {
+    display: inline-flex;
+  }
+}
