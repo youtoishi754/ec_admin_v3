@@ -23,7 +23,10 @@ class GoodsController extends BaseController
             'goods_number' => $request->goods_number,
             'goods_id'     => $request->goods_id,
             'min_price'    => $request->min_price,
-            'max_price'    => $request->max_price
+            'max_price'    => $request->max_price,
+            'min_stock'    => $request->min_stock,
+            'max_stock'    => $request->max_stock,
+            'stock_status' => $request->stock_status
         );
 
         // ソートオプションの設定

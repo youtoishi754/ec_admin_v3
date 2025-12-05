@@ -1,0 +1,8 @@
+php.iniのextention=intlを有効にしてください。
+composerをupdateしてください。
+composerをinstallしてください。
+.envファイルを作ってapp_keyをgenerateしてください。
+.envファイルのapp_nameをec_webにしてください。
+
+xamppバージョン
+xampp control panel v3.2.4 jun 5th 2019
