@@ -35,10 +35,23 @@ class GoodsEditController extends BaseController
             {
                 return redirect('/');    
             }
+            
+            // 商品番号からカテゴリコードを取得（例: A01_000001 → A01）
+            if ($goods_data->goods_number && strpos($goods_data->goods_number, '_') !== false) {
+                $category_code = explode('_', $goods_data->goods_number)[0];
+                $category = getCategoryByCode($category_code);
+                if ($category) {
+                    $goods_data->category_id = $category->id;
+                }
+            }
         }
+        
+        // カテゴリ一覧を取得（階層構造）
+        $categories = getCategoriesHierarchy();
         
         return view('goods.edit',[
             'goods_data' => $goods_data,
+            'categories' => $categories
         ]);
     }
 }

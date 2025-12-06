@@ -33,7 +33,7 @@
         </tr>
         <tr>
           <th>紹介文</th>
-          <td>{!! nl2br(e($goods_data->intro_txt))  !!}</td>
+          <td style="white-space: pre-wrap; word-wrap: break-word; word-break: break-all;">{!! nl2br(e($goods_data->intro_txt))  !!}</td>
         </tr>
         <tr>
           <th>状態</th>

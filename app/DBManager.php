@@ -312,3 +312,121 @@ function getAlertTypeBadge($alert_type)
 
     return $badges[$alert_type] ?? '<span class="badge badge-secondary">' . $alert_type . '</span>';
 }
+
+/*******************************************
+ * カテゴリ一覧を取得する
+ *******************************************/
+function getCategories($parent_id = null, $active_only = true)
+{
+    $query = DB::table('m_categories');
+    
+    if ($parent_id === null) {
+        // 親カテゴリ（大カテゴリ）のみ取得
+        $query->whereNull('parent_id');
+    } elseif ($parent_id === 'all') {
+        // 全カテゴリ取得
+    } else {
+        // 指定された親カテゴリの子カテゴリを取得
+        $query->where('parent_id', $parent_id);
+    }
+    
+    if ($active_only) {
+        $query->where('is_active', 1);
+    }
+    
+    $data = $query->orderBy('display_order', 'asc')->get();
+    
+    return $data;
+}
+
+/*******************************************
+ * カテゴリ情報を取得する（ID指定）
+ *******************************************/
+function getCategoryById($id)
+{
+    $data = DB::table('m_categories')
+        ->where('id', $id)
+        ->first();
+    
+    return $data;
+}
+
+/*******************************************
+ * カテゴリ情報を取得する（コード指定）
+ *******************************************/
+function getCategoryByCode($category_code)
+{
+    $data = DB::table('m_categories')
+        ->where('category_code', $category_code)
+        ->first();
+    
+    return $data;
+}
+
+/*******************************************
+ * 商品番号を自動生成する
+ * フォーマット: {カテゴリコード}_{6桁の連番}
+ * 例: A01_000001, B02_000123
+ *******************************************/
+function generateGoodsNumber($category_code)
+{
+    // トランザクション開始
+    DB::beginTransaction();
+    
+    try {
+        // シーケンステーブルから現在の番号を取得（行ロック）
+        $sequence = DB::table('t_goods_sequence')
+            ->where('category_code', $category_code)
+            ->lockForUpdate()
+            ->first();
+        
+        if (!$sequence) {
+            // シーケンスが存在しない場合は作成
+            DB::table('t_goods_sequence')->insert([
+                'category_code' => $category_code,
+                'last_number' => 1,
+                'updated_at' => now()
+            ]);
+            $next_number = 1;
+        } else {
+            // 次の番号を計算
+            $next_number = $sequence->last_number + 1;
+            
+            // シーケンスを更新
+            DB::table('t_goods_sequence')
+                ->where('category_code', $category_code)
+                ->update([
+                    'last_number' => $next_number,
+                    'updated_at' => now()
+                ]);
+        }
+        
+        // 商品番号を生成（カテゴリコード_6桁の連番）
+        $goods_number = $category_code . '_' . str_pad($next_number, 6, '0', STR_PAD_LEFT);
+        
+        DB::commit();
+        
+        return $goods_number;
+        
+    } catch (\Exception $e) {
+        DB::rollback();
+        throw $e;
+    }
+}
+
+/*******************************************
+ * 全カテゴリを階層構造で取得する
+ *******************************************/
+function getCategoriesHierarchy($active_only = true)
+{
+    // 親カテゴリを取得
+    $parents = getCategories(null, $active_only);
+    
+    $hierarchy = [];
+    foreach ($parents as $parent) {
+        $parent->children = getCategories($parent->id, $active_only);
+        $hierarchy[] = $parent;
+    }
+    
+    return $hierarchy;
+}

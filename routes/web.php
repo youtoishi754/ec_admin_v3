@@ -15,6 +15,7 @@
  **********/
 Route::get('/', 'GoodsController')->name('index');                         //一覧
 Route::get('/goods/add', 'Goods\GoodsAddController')->name('goods_add');              //新規登録
+Route::get('/goods/generate-number', 'Goods\GoodsGenerateNumberController')->name('goods_generate_number');  //商品番号生成API
 Route::post('/goods/add/view', 'Goods\Add\GoodsAddViewController')->name('goods_add_view');     //登録確認
 Route::post('/goods/add/do', 'Goods\Add\GoodsAddDoController')->name('goods_add_do');         //登録完了
 Route::get('/goods/edit', 'Goods\GoodsEditController')->name('goods_edit');            //編集登録
@@ -23,5 +24,4 @@ Route::post('/goods/edit/do', 'Goods\Edit\GoodsEditDoController')->name('goods_e
 Route::get('/goods/detail', 'Goods\GoodsDetailController')->name('goods_detail');        //詳細
 Route::get('/goods/delete', 'Goods\GoodsDeleteController')->name('goods_delete');        //削除確認
 Route::post('/goods/delete/do', 'Goods\Delete\GoodsDeleteDoController')->name('goods_delete_do');   //削除
-
 

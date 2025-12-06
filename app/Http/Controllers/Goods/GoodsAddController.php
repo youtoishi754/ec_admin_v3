@@ -14,6 +14,11 @@ class GoodsAddController extends BaseController
 
     public function __invoke(GoodsAddRequest $request)
     {
-        return view('goods.add');
+        // カテゴリ一覧を取得（階層構造）
+        $categories = getCategoriesHierarchy();
+        
+        return view('goods.add', [
+            'categories' => $categories
+        ]);
     }
 }
