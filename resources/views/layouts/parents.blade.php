@@ -238,15 +238,183 @@
     vertical-align: middle;
   }
   </style>
+  <style>
+  {{-- ナビゲーションメニューのスタイル --}}
+  .navbar {
+    box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  }
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
+  .navbar-brand i {
+    color: #ffc107;
+  }
+  .nav-link {
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+  }
+  .nav-link:hover {
+    background-color: rgba(255,255,255,.1);
+    border-radius: 4px;
+  }
+  .dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,.1);
+    margin-top: 0.5rem;
+  }
+  .dropdown-item {
+    padding: 0.5rem 1.5rem;
+  }
+  .dropdown-item:hover {
+    background-color: #f8f9fa;
+  }
+  .dropdown-item i {
+    width: 20px;
+    text-align: center;
+    margin-right: 8px;
+  }
+  body {
+    padding-top: 70px;
+  }
+  </style>
 </head>
 <body>
  {{-- ナビゲーション --}}
- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="{{route('index')}}">商品在庫管理システム </a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+ <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{route('index')}}">
+        <i class="fas fa-warehouse"></i> EC在庫管理システム
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav mr-auto">
+          {{-- ダッシュボード --}}
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('index')}}">
+              <i class="fas fa-home"></i> ダッシュボード
+            </a>
+          </li>
+
+          {{-- 商品管理 --}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarProducts" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-box"></i> 商品管理
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarProducts">
+              <a class="dropdown-item" href="{{route('index')}}">
+                <i class="fas fa-list"></i> 商品一覧
+              </a>
+              <a class="dropdown-item" href="{{route('goods_add')}}">
+                <i class="fas fa-plus"></i> 商品登録
+              </a>
+            </div>
+          </li>
+
+          {{-- 在庫管理 --}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarInventory" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-warehouse"></i> 在庫管理
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarInventory">
+              <a class="dropdown-item" href="{{route('index')}}">
+                <i class="fas fa-chart-line"></i> リアルタイム在庫
+              </a>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-exclamation-triangle"></i> 在庫アラート
+              </a>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-map-marker-alt"></i> ロケーション管理
+              </a>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-barcode"></i> ロット/シリアル管理
+              </a>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-calendar-times"></i> 有効期限管理
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-clipboard-check"></i> 在庫棚卸
+              </a>
+            </div>
+          </li>
+
+          {{-- 入出庫管理 --}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarStock" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-exchange-alt"></i> 入出庫管理
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarStock">
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-arrow-down"></i> 入庫登録
+              </a>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-arrow-up"></i> 出庫登録
+              </a>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-undo"></i> 返品入庫
+              </a>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-random"></i> 移動在庫
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-history"></i> 入出庫履歴
+              </a>
+            </div>
+          </li>
+
+          {{-- 発注管理 --}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarPurchase" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-shopping-cart"></i> 発注管理
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarPurchase">
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-lightbulb"></i> 発注提案
+              </a>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-file-invoice"></i> 発注書作成
+              </a>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-truck"></i> 発注状況追跡
+              </a>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-building"></i> 仕入先管理
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-chart-bar"></i> 発注実績分析
+              </a>
+            </div>
+          </li>
+        </ul>
+
+        {{-- 右側メニュー --}}
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user-circle"></i> 管理者
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarUser">
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-user"></i> プロフィール
+              </a>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-cog"></i> 設定
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+                <i class="fas fa-sign-out-alt"></i> ログアウト
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
   @yield('content')
