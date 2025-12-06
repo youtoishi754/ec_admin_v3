@@ -46,8 +46,8 @@
       <tr>
         <th>表示</th>
         <td>
-        <input type="radio" name="disp_flg" value="0" id="true_flg" @if($goods_data->disp_flg == 0) checked=checked @endif><label for="true_flg">表示</label>
-        <input type="radio" name="disp_flg" value="1" id="false_flg" @if($goods_data->disp_flg == 1) checked=checked @endif><label for="false_flg">非表示</label>
+        <input type="radio" name="disp_flg" value="1" id="true_flg" @if($goods_data->disp_flg == 1) checked=checked @endif><label for="true_flg">表示</label>
+        <input type="radio" name="disp_flg" value="0" id="false_flg" @if($goods_data->disp_flg == 0) checked=checked @endif><label for="false_flg">非表示</label>
         </td>
       </tr>
     </table> 

@@ -222,7 +222,7 @@
           <td data-label="在庫ステータス">{!! $status_badge !!}</td>
           <td data-label="更新日付">{{date('Y年m月d日',strtotime($value->up_date))}}</td>
           <td data-label="追加日付">{{date('Y年m月d日',strtotime($value->ins_date))}}</td>
-          <td>
+          <td style="white-space: nowrap;">
             <a class="btn btn-success btn-sm" href="{{route('goods_detail')}}?un_id={{$value->un_id}}" role="button"><i class="fas fa-eye"></i> 詳細</a>
             <a class="btn btn-info btn-sm" href="{{route('goods_edit')}}?un_id={{$value->un_id}}" role="button"><i class="fas fa-edit"></i> 編集</a>
             <a class="btn btn-danger btn-sm" href="{{route('goods_delete')}}?un_id={{$value->un_id}}" role="button"><i class="fas fa-trash"></i> 削除</a>

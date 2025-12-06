@@ -254,7 +254,7 @@
   {{-- フッター --}}
   <footer class="py-3 bg-dark absolute-bottom">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; 2025 Yuta Tsuji All Rights Reserved.</p>
+      <p class="m-0 text-center text-white">Copyright &copy; 2025 youtoishi754 All Rights Reserved.</p>
     </div>
   </footer>
 </body>
