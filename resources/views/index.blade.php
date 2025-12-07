@@ -134,6 +134,10 @@
           <div class="sort-buttons-group placeholder-buttons"></div>
         </th>
         <th class="sort-header">
+          <span>画像</span>
+          <div class="sort-buttons-group placeholder-buttons"></div>
+        </th>
+        <th class="sort-header">
           <span>商品名</span>
           <div class="sort-buttons-group placeholder-buttons"></div>
         </th>
@@ -208,6 +212,15 @@
       ?>
       <tr> 
           <td data-label="商品番号">{{$value->goods_number}}</td>
+          <td data-label="画像">
+            @if($value->image_path)
+              <img src="{{ asset($value->image_path) }}" alt="{{ $value->goods_name }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px;">
+            @else
+              <div style="width: 60px; height: 60px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center; border-radius: 4px;">
+                <i class="fas fa-image text-muted"></i>
+              </div>
+            @endif
+          </td>
           <td data-label="商品名">{{$value->goods_name}}</td>
           <td data-label="金額">{{number_format($value->goods_price)}}円</td>
           <td data-label="在庫数">

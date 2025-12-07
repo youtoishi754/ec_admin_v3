@@ -23,6 +23,14 @@
           <th>商品名</th>
           <td>{{ $goods_data->goods_name }}</td>
         </tr>
+        @if($goods_data->image_path)
+        <tr>
+          <th>商品画像</th>
+          <td>
+            <img src="{{ asset($goods_data->image_path) }}" alt="{{ $goods_data->goods_name }}" class="img-thumbnail" style="max-width: 200px; max-height: 200px; object-fit: contain;">
+          </td>
+        </tr>
+        @endif
         <tr>
           <th>金額</th>
           <td>{{ number_format($goods_data->goods_price) }}円</td>

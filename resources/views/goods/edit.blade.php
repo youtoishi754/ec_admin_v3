@@ -19,7 +19,7 @@
     </ul>
   @endif
   {{-- 商品情報入力フォーム --}}
-  <form action="{{route('goods_edit_view')}}" method="post" class="goods-form" enctype="multipart/form-data">
+  <form action="{{route('goods_edit_do')}}" method="post" class="goods-form" enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <input type="hidden" name="un_id" value="{{ $goods_data->un_id }}">
     <table class="table table-hover">
@@ -65,7 +65,7 @@
               <div id="current_image" class="mb-3">
                 <p><strong><i class="fas fa-image"></i> 現在の画像:</strong></p>
                 <div class="current-image-container">
-                  <img src="{{ $goods_data->image_path }}" alt="現在の商品画像" class="img-thumbnail">
+                  <img src="{{ asset($goods_data->image_path) }}" alt="現在の商品画像" class="img-thumbnail">
                 </div>
                 <div class="custom-control custom-checkbox mt-2">
                   <input type="checkbox" class="custom-control-input" id="delete_image" name="delete_image" value="1" onchange="toggleDeleteWarning(this)">
@@ -110,7 +110,12 @@
       </tr>
     </table> 
     <div class="text-center">
-        <button type="submit">確認画面へ</button> 
+        <button type="submit" class="btn btn-primary btn-lg">
+          <i class="fas fa-save"></i> 変更を保存する
+        </button>
+        <a href="{{ route('goods_detail', ['un_id' => $goods_data->un_id]) }}" class="btn btn-secondary btn-lg">
+          <i class="fas fa-times"></i> キャンセル
+        </a>
     </div>
   </form>
 </div>

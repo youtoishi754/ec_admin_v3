@@ -14,6 +14,26 @@
       <i class="fas fa-box"></i> 商品詳細情報
     </h3>
 
+    {{-- 成功メッセージ --}}
+    @if(session('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle"></i> {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
+
+    {{-- エラーメッセージ --}}
+    @if(session('error'))
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-triangle"></i> {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
+
     {{-- 詳細 テーブル --}}
     <table class="table table-hover table-bordered">
       <tr>
@@ -27,7 +47,14 @@
       @if($goods_data->image_path)
       <tr>
         <th class="table-active">商品画像</th>
-        <td><img src="{{ $goods_data->image_path }}" alt="{{ $goods_data->goods_name }}" style="max-width: 300px; max-height: 300px;"></td>
+        <td>
+          <div class="product-image-container">
+            <img src="{{ asset($goods_data->image_path) }}" alt="{{ $goods_data->goods_name }}" class="img-thumbnail" style="max-width: 400px; max-height: 400px; object-fit: contain;">
+          </div>
+          <small class="text-muted d-block mt-2">
+            <i class="fas fa-info-circle"></i> 画像パス: {{ $goods_data->image_path }}
+          </small>
+        </td>
       </tr>
       @endif
       <tr>

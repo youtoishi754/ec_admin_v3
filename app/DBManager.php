@@ -102,7 +102,21 @@ function getGoodsList($search_options = null)
     $data = DB::table('t_goods')
     ->leftJoin(DB::raw('(SELECT goods_id, SUM(quantity) as total_quantity, SUM(reserved_quantity) as total_reserved, SUM(available_quantity) as total_available FROM t_inventories GROUP BY goods_id) as inv'), 't_goods.id', '=', 'inv.goods_id')
     ->select(
-        't_goods.*',
+        't_goods.id',
+        't_goods.un_id',
+        't_goods.goods_number',
+        't_goods.goods_name',
+        't_goods.goods_price',
+        't_goods.goods_stock',
+        't_goods.category_id',
+        't_goods.intro_txt',
+        't_goods.image_path',
+        't_goods.disp_flg',
+        't_goods.min_stock_level',
+        't_goods.max_stock_level',
+        't_goods.reorder_point',
+        't_goods.up_date',
+        't_goods.ins_date',
         DB::raw('COALESCE(inv.total_quantity, t_goods.goods_stock) as total_inventory'),
         DB::raw('COALESCE(inv.total_reserved, 0) as total_reserved'),
         DB::raw('COALESCE(inv.total_available, t_goods.goods_stock) as total_available')
@@ -429,4 +443,30 @@ function getCategoriesHierarchy($active_only = true)
     }
     
     return $hierarchy;
+}
+
+/*******************************************
+ * 商品番号からun_idを取得する
+ *******************************************/
+function getUnIdByGoodsNumber($goods_number)
+{
+    $goods = DB::table('t_goods')
+        ->where('goods_number', $goods_number)
+        ->where('delete_flg', 0)
+        ->first();
+    
+    return $goods ? $goods->un_id : null;
+}
+
+/*******************************************
+ * 商品番号で商品情報を取得する
+ *******************************************/
+function getGoodsByNumber($goods_number)
+{
+    $data = DB::table('t_goods')
+        ->where('goods_number', $goods_number)
+        ->where('delete_flg', 0)
+        ->first();
+    
+    return $data;
 }

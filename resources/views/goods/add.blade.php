@@ -19,7 +19,7 @@
       </ul>
     @endif
   {{-- 商品情報入力フォーム --}}
-  <form action="{{route('goods_add_view')}}" method="post" class="goods-form" enctype="multipart/form-data">
+  <form action="{{route('goods_add_do')}}" method="post" class="goods-form" enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{{csrf_token()}}"> 
     <input type="hidden" id="goods_number" name="goods_number" value="{{ request()->goods_number }}">
     <table class="table table-hover">
@@ -100,7 +100,12 @@
       </tr>
     </table> 
     <div class="text-center">
-        <button type="submit">確認画面へ</button> 
+        <button type="submit" class="btn btn-primary btn-lg">
+          <i class="fas fa-save"></i> 商品を登録する
+        </button>
+        <a href="{{ route('index') }}" class="btn btn-secondary btn-lg">
+          <i class="fas fa-times"></i> キャンセル
+        </a>
     </div>
   </form>
 </div>
