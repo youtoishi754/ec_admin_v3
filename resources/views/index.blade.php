@@ -101,12 +101,34 @@
     <a class="btn btn-primary" href="{{ route('goods_add') }}" role="button">
         <i class="fas fa-plus"></i> 新規登録
     </a>
-    <a class="btn btn-success ms-2" href="{{ route('goods_export_csv', request()->all()) }}" role="button">
-        <i class="fas fa-file-csv"></i> CSV出力
-    </a>
-    <a class="btn btn-info ms-2" href="{{ route('goods_export_detailed_csv', request()->all()) }}" role="button">
-        <i class="fas fa-file-csv"></i> 在庫詳細CSV出力
-    </a>
+    <div class="btn-group ml-2" role="group">
+        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-file-export"></i> エクスポート
+        </button>
+        <div class="dropdown-menu">
+            <h6 class="dropdown-header">基本出力</h6>
+            <a class="dropdown-item" href="{{ route('goods_export_csv', request()->all()) }}">
+                <i class="fas fa-file-csv text-success"></i> CSV出力
+            </a>
+            <a class="dropdown-item" href="{{ route('goods_export_excel', request()->all()) }}">
+                <i class="fas fa-file-excel text-success"></i> Excel出力
+            </a>
+            <a class="dropdown-item" href="{{ route('goods_export_pdf', request()->all()) }}">
+                <i class="fas fa-file-pdf text-danger"></i> PDF出力
+            </a>
+            <div class="dropdown-divider"></div>
+            <h6 class="dropdown-header">在庫詳細出力</h6>
+            <a class="dropdown-item" href="{{ route('goods_export_detailed_csv', request()->all()) }}">
+                <i class="fas fa-file-csv text-info"></i> 在庫詳細CSV
+            </a>
+            <a class="dropdown-item" href="{{ route('goods_export_detailed_excel', request()->all()) }}">
+                <i class="fas fa-file-excel text-info"></i> 在庫詳細Excel
+            </a>
+            <a class="dropdown-item" href="{{ route('goods_export_detailed_pdf', request()->all()) }}">
+                <i class="fas fa-file-pdf text-danger"></i> 在庫詳細PDF
+            </a>
+        </div>
+    </div>
 </div>
 {{-- 商品情報一覧 --}}
 @if(count($goods_list) > 0)
