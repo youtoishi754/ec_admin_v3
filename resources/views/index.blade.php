@@ -101,6 +101,12 @@
     <a class="btn btn-primary" href="{{ route('goods_add') }}" role="button">
         <i class="fas fa-plus"></i> 新規登録
     </a>
+    <a class="btn btn-success ms-2" href="{{ route('goods_export_csv', request()->all()) }}" role="button">
+        <i class="fas fa-file-csv"></i> CSV出力
+    </a>
+    <a class="btn btn-info ms-2" href="{{ route('goods_export_detailed_csv', request()->all()) }}" role="button">
+        <i class="fas fa-file-csv"></i> 在庫詳細CSV出力
+    </a>
 </div>
 {{-- 商品情報一覧 --}}
 @if(count($goods_list) > 0)

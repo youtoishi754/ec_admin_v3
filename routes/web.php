@@ -24,4 +24,6 @@ Route::post('/goods/edit/do', 'Goods\Edit\GoodsEditDoController')->name('goods_e
 Route::get('/goods/detail', 'Goods\GoodsDetailController')->name('goods_detail');        //詳細
 Route::get('/goods/delete', 'Goods\GoodsDeleteController')->name('goods_delete');        //削除確認
 Route::post('/goods/delete/do', 'Goods\Delete\GoodsDeleteDoController')->name('goods_delete_do');   //削除
+Route::get('/goods/export/csv', 'Goods\Export\GoodsExportCsvController')->name('goods_export_csv');      //CSV出力
+Route::get('/goods/export/detailed-csv', 'Goods\Export\GoodsExportDetailedCsvController')->name('goods_export_detailed_csv'); //在庫詳細CSV出力
 
