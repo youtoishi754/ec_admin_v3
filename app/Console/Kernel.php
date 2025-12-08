@@ -24,8 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // 在庫アラートチェック（1時間ごと）
+        $schedule->command('stock:check-alerts')->hourly();
     }
 
     /**

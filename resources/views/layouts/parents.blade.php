@@ -321,24 +321,30 @@
               <i class="fas fa-warehouse"></i> 在庫管理
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarInventory">
-              <a class="dropdown-item" href="{{route('index')}}">
+              <a class="dropdown-item" href="{{route('inventory')}}">
                 <i class="fas fa-chart-line"></i> リアルタイム在庫
               </a>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{route('inventory_alert')}}">
                 <i class="fas fa-exclamation-triangle"></i> 在庫アラート
               </a>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{route('inventory_location')}}">
                 <i class="fas fa-map-marker-alt"></i> ロケーション管理
               </a>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
-                <i class="fas fa-barcode"></i> ロット/シリアル管理
+              <a class="dropdown-item" href="{{route('inventory_lot')}}">
+                <i class="fas fa-barcode"></i> ロット管理
               </a>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{route('inventory_serial')}}">
+                <i class="fas fa-hashtag"></i> シリアル番号管理
+              </a>
+              <a class="dropdown-item" href="{{route('inventory_expiry')}}">
                 <i class="fas fa-calendar-times"></i> 有効期限管理
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{route('inventory_stocktaking')}}">
                 <i class="fas fa-clipboard-check"></i> 在庫棚卸
+              </a>
+              <a class="dropdown-item" href="{{route('inventory_stocktaking_history')}}">
+                <i class="fas fa-history"></i> 棚卸履歴
               </a>
             </div>
           </li>
@@ -349,20 +355,20 @@
               <i class="fas fa-exchange-alt"></i> 入出庫管理
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarStock">
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{route('stock_in')}}">
                 <i class="fas fa-arrow-down"></i> 入庫登録
               </a>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{route('stock_out')}}">
                 <i class="fas fa-arrow-up"></i> 出庫登録
               </a>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{route('stock_return')}}">
                 <i class="fas fa-undo"></i> 返品入庫
               </a>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{route('stock_transfer')}}">
                 <i class="fas fa-random"></i> 移動在庫
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{route('stock_movement_history')}}">
                 <i class="fas fa-history"></i> 入出庫履歴
               </a>
             </div>

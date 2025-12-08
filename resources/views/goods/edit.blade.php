@@ -94,8 +94,17 @@
         <td><input type="text" name="goods_price" value="{{ $goods_data->goods_price }}"></td>
       </tr>
       <tr>
-        <th>個数</th>
-        <td><input type="text" name="goods_stock" value="{{ $goods_data->goods_stock }}"></td>
+        <th>在庫数（参考）</th>
+        <td>
+          <div class="alert alert-info mb-0">
+            <strong>実在庫数: {{ number_format($goods_data->total_inventory ?? $goods_data->goods_stock) }}</strong>
+            （利用可能: {{ number_format($goods_data->total_available ?? $goods_data->goods_stock) }}、
+            引当済: {{ number_format($goods_data->total_reserved ?? 0) }}）
+            <br>
+            <small>※在庫数は「在庫管理」メニューから入出庫操作で変更してください</small>
+          </div>
+          <input type="hidden" name="goods_stock" value="{{ $goods_data->goods_stock }}">
+        </td>
       </tr>
       <tr>
         <th>紹介文</th>
