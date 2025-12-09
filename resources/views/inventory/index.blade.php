@@ -112,10 +112,10 @@
   {{ $inventories->appends(request()->input())->links('vendor.pagination.bootstrap-4') }}
 
   <div class="table-responsive">
-    <table class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered table-sm">
       <thead class="thead-light">
         <tr>
-          <th>商品画像</th>
+          <th>画像</th>
           <th>商品番号</th>
           <th>商品名</th>
           <th>カテゴリ</th>
@@ -125,7 +125,7 @@
           <th>シリアル番号</th>
           <th>在庫数</th>
           <th>引当数</th>
-          <th>利用可能数</th>
+          <th>利用可能</th>
           <th>有効期限</th>
           <th>入荷日</th>
         </tr>
@@ -133,11 +133,11 @@
       <tbody>
         @foreach($inventories as $inventory)
         <tr>
-          <td class="text-center">
+          <td class="text-center p-1">
             @if($inventory->image_path)
-              <img src="{{ asset($inventory->image_path) }}" alt="商品画像" style="width: 50px; height: 50px; object-fit: cover;">
+              <img src="{{ asset($inventory->image_path) }}" alt="" style="width: 40px; height: 40px; object-fit: cover;">
             @else
-              <i class="fas fa-image fa-2x text-muted"></i>
+              <i class="fas fa-image text-muted"></i>
             @endif
           </td>
           <td>{{$inventory->goods_number}}</td>
@@ -180,7 +180,9 @@
               -
             @endif
           </td>
-          <td>{{$inventory->received_date ?? '-'}}</td>
+          <td>
+            {{$inventory->received_date ?? '-'}}
+          </td>
         </tr>
         @endforeach
       </tbody>
