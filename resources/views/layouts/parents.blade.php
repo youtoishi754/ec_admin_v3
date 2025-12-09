@@ -295,7 +295,7 @@
         <ul class="navbar-nav mr-auto">
           {{-- ダッシュボード --}}
           <li class="nav-item">
-            <a class="nav-link" href="{{route('index')}}">
+            <a class="nav-link" href="{{route('dashboard')}}">
               <i class="fas fa-home"></i> ダッシュボード
             </a>
           </li>

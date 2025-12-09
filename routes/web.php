@@ -10,10 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/********** 
+ * ダッシュボード
+ **********/
+Route::get('/', 'DashboardController')->name('dashboard');                       //ダッシュボード
+
 /********** 
  * 商品管理
  **********/
-Route::get('/', 'GoodsController')->name('index');                         //一覧
+Route::get('/goods', 'GoodsController')->name('index');                         //一覧
 Route::get('/goods/add', 'Goods\GoodsAddController')->name('goods_add');              //新規登録
 Route::get('/goods/generate-number', 'Goods\GoodsGenerateNumberController')->name('goods_generate_number');  //商品番号生成API
 Route::post('/goods/add/view', 'Goods\Add\GoodsAddViewController')->name('goods_add_view');     //登録確認
