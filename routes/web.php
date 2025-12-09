@@ -70,3 +70,27 @@ Route::get('/stock-movement/transfer', 'StockMovement\\StockTransferController@i
 Route::post('/stock-movement/transfer/store', 'StockMovement\\StockTransferController@store')->name('stock_transfer_store'); //移動在庫実行
 Route::get('/stock-movement/history', 'StockMovement\\StockMovementHistoryController')->name('stock_movement_history');   //入出庫履歴
 
+/********** 
+ * 発注管理
+ **********/
+Route::get('/purchase/suggestion', 'Purchase\\OrderSuggestionController@index')->name('order_suggestion');              //発注提案
+Route::post('/purchase/suggestion/create-order', 'Purchase\\OrderSuggestionController@createOrder')->name('order_suggestion_create'); //発注提案から発注書作成
+Route::get('/purchase/order', 'Purchase\\PurchaseOrderController@index')->name('purchase_order_list');                 //発注書一覧
+Route::get('/purchase/order/create', 'Purchase\\PurchaseOrderController@create')->name('purchase_order_create');            //発注書作成
+Route::post('/purchase/order/store', 'Purchase\\PurchaseOrderController@store')->name('purchase_order_store');             //発注書保存
+Route::get('/purchase/order/{id}/edit', 'Purchase\\PurchaseOrderController@edit')->name('purchase_order_edit');             //発注書編集
+Route::put('/purchase/order/{id}/update', 'Purchase\\PurchaseOrderController@update')->name('purchase_order_update');          //発注書更新
+Route::post('/purchase/order/{id}/status', 'Purchase\\PurchaseOrderController@updateStatus')->name('purchase_order_status');       //発注書ステータス更新
+Route::delete('/purchase/order/{id}/delete', 'Purchase\\PurchaseOrderController@destroy')->name('purchase_order_delete');        //発注書削除
+Route::get('/purchase/tracking', 'Purchase\\OrderTrackingController@index')->name('purchase_tracking');                //発注状況追跡
+Route::get('/purchase/tracking/{id}', 'Purchase\\OrderTrackingController@show')->name('purchase_tracking_detail');           //発注詳細
+Route::post('/purchase/tracking/{id}/receive', 'Purchase\\OrderTrackingController@receive')->name('purchase_receive');         //入荷処理
+Route::get('/purchase/supplier', 'Purchase\\SupplierController@index')->name('supplier_list');                     //仕入先一覧
+Route::get('/purchase/supplier/create', 'Purchase\\SupplierController@create')->name('supplier_create');                //仕入先登録
+Route::post('/purchase/supplier/store', 'Purchase\\SupplierController@store')->name('supplier_store');                 //仕入先登録実行
+Route::get('/purchase/supplier/{id}/edit', 'Purchase\\SupplierController@edit')->name('supplier_edit');                 //仕入先編集
+Route::put('/purchase/supplier/{id}/update', 'Purchase\\SupplierController@update')->name('supplier_update');              //仕入先更新
+Route::delete('/purchase/supplier/{id}/delete', 'Purchase\\SupplierController@destroy')->name('supplier_delete');            //仕入先削除
+Route::get('/purchase/analytics', 'Purchase\\OrderAnalyticsController@index')->name('order_analytics');                //発注実績分析
+Route::get('/purchase/analytics/export', 'Purchase\\OrderAnalyticsController@export')->name('order_analytics_export');         //発注実績CSVエクスポート
+

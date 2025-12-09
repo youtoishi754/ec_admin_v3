@@ -380,20 +380,20 @@
               <i class="fas fa-shopping-cart"></i> 発注管理
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarPurchase">
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{ route('order_suggestion') }}">
                 <i class="fas fa-lightbulb"></i> 発注提案
               </a>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{ route('purchase_order_list') }}">
                 <i class="fas fa-file-invoice"></i> 発注書作成
               </a>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{ route('purchase_tracking') }}">
                 <i class="fas fa-truck"></i> 発注状況追跡
               </a>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{ route('supplier_list') }}">
                 <i class="fas fa-building"></i> 仕入先管理
               </a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" onclick="alert('この機能は開発中です'); return false;">
+              <a class="dropdown-item" href="{{ route('order_analytics') }}">
                 <i class="fas fa-chart-bar"></i> 発注実績分析
               </a>
             </div>
