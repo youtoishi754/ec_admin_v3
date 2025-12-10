@@ -100,6 +100,9 @@
             <th colspan="6" class="t_foot">
               <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> 検索</button>
               <button type="button" class="btn btn-secondary" onclick="location.href='{{route('inventory')}}'"><i class="fas fa-undo"></i> リセット</button>
+              <span class="ml-3">|</span>
+              <a href="{{ route('inventory_export_csv', request()->all()) }}" class="btn btn-outline-success ml-2"><i class="fas fa-file-csv"></i> CSV出力</a>
+              <a href="{{ route('inventory_export_excel', request()->all()) }}" class="btn btn-outline-primary"><i class="fas fa-file-excel"></i> Excel出力</a>
             </th>
           </tr>
         </tfoot>

@@ -97,6 +97,8 @@
             <th colspan="6" class="t_foot">
               <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> 検索</button>
               <button type="button" class="btn btn-secondary" onclick="location.href='{{ route('purchase_order_list') }}'"><i class="fas fa-undo"></i> リセット</button>
+              <span class="ml-3">|</span>
+              <a href="{{ route('purchase_order_export_csv', request()->all()) }}" class="btn btn-outline-success ml-2"><i class="fas fa-file-csv"></i> CSV出力</a>
               <a href="{{ route('purchase_order_create') }}" class="btn btn-success float-right"><i class="fas fa-plus"></i> 新規発注書作成</a>
             </th>
           </tr>
@@ -120,7 +122,7 @@
           <th class="text-right">合計金額</th>
           <th>ステータス</th>
           <th>作成日時</th>
-          <th width="120">操作</th>
+          <th width="140">操作</th>
         </tr>
       </thead>
       <tbody>
@@ -145,12 +147,13 @@
           <td><span class="badge {{ $statusClass }}">{{ $statusLabel }}</span></td>
           <td>{{ \Carbon\Carbon::parse($order->created_at)->format('Y-m-d H:i') }}</td>
           <td>
-            <a href="{{ route('purchase_order_edit', ['id' => $order->id]) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+            <a href="{{ route('purchase_order_pdf', ['id' => $order->id]) }}" class="btn btn-sm btn-outline-danger" title="PDF出力"><i class="fas fa-file-pdf"></i></a>
+            <a href="{{ route('purchase_order_edit', ['id' => $order->id]) }}" class="btn btn-sm btn-primary" title="編集"><i class="fas fa-edit"></i></a>
             @if($order->status == 'draft')
             <form action="{{ route('purchase_order_delete', ['id' => $order->id]) }}" method="POST" style="display: inline;" onsubmit="return confirm('この発注書を削除してもよろしいですか？');">
               @csrf
               @method('DELETE')
-              <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+              <button type="submit" class="btn btn-sm btn-danger" title="削除"><i class="fas fa-trash"></i></button>
             </form>
             @endif
           </td>

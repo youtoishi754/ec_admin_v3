@@ -100,3 +100,24 @@ Route::delete('/purchase/supplier/{id}/delete', 'Purchase\\SupplierController@de
 Route::get('/purchase/analytics', 'Purchase\\OrderAnalyticsController@index')->name('order_analytics');                //発注実績分析
 Route::get('/purchase/analytics/export', 'Purchase\\OrderAnalyticsController@export')->name('order_analytics_export');         //発注実績CSVエクスポート
 
+/********** 
+ * エクスポート機能
+ **********/
+// 在庫エクスポート
+Route::get('/inventory/export/csv', 'Inventory\Export\InventoryExportCsvController')->name('inventory_export_csv');           //リアルタイム在庫CSV出力
+Route::get('/inventory/export/excel', 'Inventory\Export\InventoryExportExcelController')->name('inventory_export_excel');       //リアルタイム在庫Excel出力
+
+// 入出庫履歴エクスポート
+Route::get('/stock-movement/export/csv', 'StockMovement\Export\StockMovementExportCsvController')->name('stock_movement_export_csv'); //入出庫履歴CSV出力
+
+// 棚卸シートエクスポート
+Route::get('/inventory/stocktaking/export/excel', 'Inventory\Export\StocktakingExportController@exportExcel')->name('stocktaking_export_excel'); //棚卸シートExcel出力
+Route::get('/inventory/stocktaking/export/pdf', 'Inventory\Export\StocktakingExportController@exportPdf')->name('stocktaking_export_pdf');     //棚卸シートPDF出力
+
+// 発注書エクスポート
+Route::get('/purchase/order/{id}/pdf', 'Purchase\Export\PurchaseOrderPdfController')->name('purchase_order_pdf');             //発注書PDF出力
+Route::get('/purchase/order/export/csv', 'Purchase\Export\PurchaseOrderListCsvController')->name('purchase_order_export_csv');      //発注書一覧CSV出力
+
+// 仕入先エクスポート
+Route::get('/purchase/supplier/export/csv', 'Purchase\Export\SupplierExportCsvController')->name('supplier_export_csv');         //仕入先一覧CSV出力
+

@@ -1,0 +1,50 @@
+{
+    "ipagothic": {
+        "normal": "ipaexg",
+        "bold": "ipaexg",
+        "italic": "ipaexg",
+        "bold_italic": "ipaexg"
+    },
+    "sans-serif": {
+        "normal": "Helvetica",
+        "bold": "Helvetica-Bold",
+        "italic": "Helvetica-Oblique",
+        "bold_italic": "Helvetica-BoldOblique"
+    },
+    "times": {
+        "normal": "Times-Roman",
+        "bold": "Times-Bold",
+        "italic": "Times-Italic",
+        "bold_italic": "Times-BoldItalic"
+    },
+    "courier": {
+        "normal": "Courier",
+        "bold": "Courier-Bold",
+        "italic": "Courier-Oblique",
+        "bold_italic": "Courier-BoldOblique"
+    },
+    "helvetica": {
+        "normal": "Helvetica",
+        "bold": "Helvetica-Bold",
+        "italic": "Helvetica-Oblique",
+        "bold_italic": "Helvetica-BoldOblique"
+    },
+    "serif": {
+        "normal": "Times-Roman",
+        "bold": "Times-Bold",
+        "italic": "Times-Italic",
+        "bold_italic": "Times-BoldItalic"
+    },
+    "monospace": {
+        "normal": "Courier",
+        "bold": "Courier-Bold",
+        "italic": "Courier-Oblique",
+        "bold_italic": "Courier-BoldOblique"
+    },
+    "dejavu sans": {
+        "normal": "DejaVuSans",
+        "bold": "DejaVuSans-Bold",
+        "italic": "DejaVuSans-Oblique",
+        "bold_italic": "DejaVuSans-BoldOblique"
+    }
+}
