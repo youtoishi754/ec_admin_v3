@@ -2,7 +2,7 @@
 @section('title', '発注提案')
 @section('content')
 
-<div class="container-fluid">
+<div class="container">
   <h3 style="border-bottom: 1px solid #000;border-left: 10px solid #000;padding: 7px;margin-top:10px;">発注提案</h3>
   
   @if(session('success'))
